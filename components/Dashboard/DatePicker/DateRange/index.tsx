@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil'
-import { dateState } from '@state/dashBoard'
+import { dateState } from 'state/dashBoard'
 
 import { DateRangePicker, RangeKeyDict } from 'react-date-range'
 import { ko } from 'date-fns/locale'

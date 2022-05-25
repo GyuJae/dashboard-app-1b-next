@@ -1,7 +1,8 @@
 import dynamic from 'next/dynamic'
 import styles from '@styles/components/Layout/layout.module.scss'
 
-const LNB = dynamic(() => import('components/_shared/LNB'))
+const LoadingPage = dynamic(() => import('@components/LoadingPage'))
+const LNB = dynamic(() => import('@components/_shared/LNB'))
 const Header = dynamic(() => import('@components/_shared/Header'))
 
 interface IProps {
@@ -14,6 +15,7 @@ const Layout = ({ children }: IProps) => {
       <LNB />
       <div className={styles.container}>
         <Header />
+        <LoadingPage />
         {children}
       </div>
     </div>
