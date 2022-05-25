@@ -1,6 +1,12 @@
-import '../styles/globals.scss'
+import React from 'react'
+
 import type { AppProps } from 'next/app'
 import { SWRConfig } from 'swr'
+import { RecoilRoot } from 'recoil'
+import '@styles/globals.scss'
+import dynamic from 'next/dynamic'
+
+const Layout = dynamic(() => import('components/Layout'))
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -10,7 +16,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           fetch(`https://wanted-madup.herokuapp.com/${url}`).then((response) => response.json()),
       }}
     >
-      <Component {...pageProps} />
+      <RecoilRoot>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </RecoilRoot>
     </SWRConfig>
   )
 }

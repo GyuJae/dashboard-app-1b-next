@@ -1,31 +1,62 @@
 import type { NextPage } from 'next'
-import { getDailyApi } from 'services'
-import styles from 'styles/pages/Home.module.scss'
+import { getDailyApi, getMediaApi } from 'services'
 import useSWR, { SWRConfig } from 'swr'
-import { IDailyResponse } from 'types/response'
+import { IDailyResponse, IMediaResponse } from 'types/response'
+import { IDaily } from 'types/daily'
+import { IMedia } from 'types/media'
+import dynamic from 'next/dynamic'
+import styles from '@styles/pages/dashboard.module.scss'
+
+const DailyMean = dynamic(() => import('@components/Dashboard/DailyMean'))
+const DailyChart = dynamic(() => import('@components/Dashboard/DailyChart'))
+const DatePicker = dynamic(() => import('@components/Dashboard/DatePicker'))
+const MediaChannelGraph = dynamic(() => import('@components/Dashboard/MediaChannelGraph'))
+const MediaChannelTable = dynamic(() => import('@components/Dashboard/MediaChannelTable'))
+const DataFilterButtons = dynamic(() => import('@components/Dashboard/DataFilterButtons'))
 
 interface IProps {
-  data: IDailyResponse
+  daily: IDailyResponse
+  media: IMediaResponse
 }
 
 const Home: NextPage = () => {
-  const { data } = useSWR<IDailyResponse>('daily')
+  const { data: dailyData } = useSWR<IDailyResponse>('daily')
+  const { data: mediaData } = useSWR<IMediaResponse>('media')
 
   return (
-    <div className={styles.wrapper}>
-      {data?.daily?.map((day) => (
-        <div key={day.date}>{day.date}</div>
-      ))}
-    </div>
+    <>
+      <div className={styles.header}>
+        <h1 className={styles.h1}>대시보드</h1>
+        <div className={styles.datePickerWrapper}>
+          <DatePicker />
+        </div>
+      </div>
+      <div className={styles.boardWrapper}>
+        <h2 className={styles.h2}>통합 광고 현황</h2>
+        <div className={styles.chartWrapper}>
+          <DailyMean daily={dailyData?.daily as IDaily[]} />
+          <DataFilterButtons />
+          <DailyChart daily={dailyData?.daily as IDaily[]} />
+        </div>
+      </div>
+      <div className={styles.boardWrapper}>
+        <h2 className={styles.h2}>매체 현황</h2>
+        <div className={styles.chartWrapper}>
+          <MediaChannelGraph media={mediaData?.media as IMedia[]} />
+          <MediaChannelTable media={mediaData?.media as IMedia[]} />
+        </div>
+      </div>
+    </>
   )
 }
 
-const Page: NextPage<IProps> = ({ data }) => {
+const Page: NextPage<IProps> = ({ daily, media }) => {
   return (
     <SWRConfig
       value={{
         fallback: {
-          daily: data,
+          daily,
+          media,
         },
       }}
     >
@@ -35,10 +66,12 @@ const Page: NextPage<IProps> = ({ data }) => {
 }
 
 export async function getServerSideProps() {
-  const data = await getDailyApi()
+  const daily = await getDailyApi()
+  const media = await getMediaApi()
   return {
     props: {
-      data,
+      daily,
+      media,
     },
   }
 }

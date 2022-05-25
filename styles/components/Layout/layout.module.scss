@@ -1,0 +1,16 @@
+@use '/styles/constants/colors';
+@use '/styles/mixins/flexbox';
+
+.appWrapper {
+  display: flex;
+  min-width: 1280px;
+
+  .container {
+    @include flexbox.columnFlexbox;
+    flex: 1;
+    min-height: 100vh;
+    padding: 0 40px 40px 360px;
+    overflow: hidden;
+    background-color: colors.$BG_G;
+  }
+}

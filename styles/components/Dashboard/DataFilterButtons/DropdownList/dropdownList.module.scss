@@ -1,0 +1,34 @@
+@use '/styles/constants/colors';
+
+.selectList {
+  position: absolute;
+  top: 50px;
+  z-index: 100;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 10%);
+}
+
+.listItem {
+  width: 100%;
+  height: 35px;
+  background-color: colors.$WHITE;
+
+  &:hover {
+    background-color: colors.$HOVER;
+  }
+}
+
+.clickedBtn {
+  font-weight: bold;
+  background-color: #ecf8ff;
+
+  &:hover {
+    background-color: #ecf8ff;
+  }
+}
+
+.disableBtn {
+  display: none;
+}

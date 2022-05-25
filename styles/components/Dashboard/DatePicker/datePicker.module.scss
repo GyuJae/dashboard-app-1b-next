@@ -1,0 +1,7 @@
+@use '/styles/constants/colors';
+
+.wrapper {
+  &.wrapperOpen {
+    margin-top: 120px;
+  }
+}

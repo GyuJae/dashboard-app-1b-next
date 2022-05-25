@@ -1,0 +1,17 @@
+@use '/styles/constants/colors';
+
+.addStatusChart {
+  margin-top: 42px;
+
+  .buttonSelectCont {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .leftSelectCont {
+    display: flex;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,19 @@
+@use '/styles/constants/colors';
+@use '/styles/mixins/flexbox';
+
+.dateInputContainer {
+  label {
+    @include flexbox.flexbox(between, center);
+    font-size: 14px;
+    color: colors.$GRAY2;
+
+    .imageContainer {
+      margin-top: 1 px;
+      margin-left: 5px;
+    }
+  }
+
+  input {
+    display: none;
+  }
+}

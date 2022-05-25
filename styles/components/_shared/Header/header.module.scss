@@ -1,0 +1,30 @@
+@use '/styles/constants/colors';
+@use '/styles/mixins/flexbox';
+@use '/styles/mixins/typography';
+
+.headerWrapper {
+  height: 80px;
+  background-color: colors.$BG_G;
+  border-bottom: 1px solid colors.$GREY_50;
+
+  ul {
+    @include flexbox.flexbox($jc: end, $gap: 30px);
+    height: 100%;
+
+    .bellIcon {
+      position: relative;
+
+      svg:last-child {
+        position: absolute;
+        top: -2px;
+        right: -2px;
+      }
+    }
+
+    .profile {
+      @include flexbox.flexbox($gap: 10px);
+      @include typography.body14;
+      color: colors.$GREY_800;
+    }
+  }
+}

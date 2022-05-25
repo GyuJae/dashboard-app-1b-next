@@ -1,0 +1,14 @@
+@use '/styles/mixins/responsive';
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 15px;
+
+  @include responsive.after('SD') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include responsive.after('LD') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

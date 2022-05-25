@@ -1,14 +1,14 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
+@import 'base/reset';
+@import 'base/more';
+@import 'base/fonts';
+
+.rdrDefinedRangesWrapper {
+  display: none;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
+.rdrCalendarWrapper {
+  z-index: 100;
+  width: 450px;
+  border-radius: 10px;
+  box-shadow: #999999 0 10px 20px;
 }

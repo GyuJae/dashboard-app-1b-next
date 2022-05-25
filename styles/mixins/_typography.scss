@@ -1,0 +1,46 @@
+@mixin lineClamp($line, $lineHeight) {
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  display: -webkit-box;
+  height: #{$lineHeight * $line}px;
+  overflow: hidden;
+  word-break: break-all;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
+
+@mixin body12() {
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 14px;
+}
+
+@mixin body14() {
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+@mixin head16() {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 19px;
+}
+
+@mixin head26() {
+  font-family: Roboto, sans-serif;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 30px;
+}
+
+@mixin textElipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

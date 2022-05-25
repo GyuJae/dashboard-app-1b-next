@@ -1,0 +1,106 @@
+@use '/styles/constants/colors';
+@use '/styles/mixins/flexbox';
+@use '/styles/mixins/typography';
+
+.gnbWrapper {
+  @include flexbox.flexbox(between, around, col);
+  position: fixed;
+  z-index: 100;
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  min-height: 100vh;
+  padding: 0 40px;
+  background-color: colors.$WHITE;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 4%);
+
+  .top {
+    @include flexbox.flexbox(center, around, col, 53px);
+
+    .logo {
+      @include flexbox.flexbox(start, center);
+      height: 150px;
+      border-bottom: 1px solid colors.$GREY_50;
+    }
+
+    .box {
+      @include flexbox.columnFlexbox(13px);
+
+      h3 {
+        @include typography.body12;
+        margin-left: 20px;
+        color: colors.$GREY_300;
+      }
+
+      ul {
+        li {
+          border-radius: 5px;
+
+          &.isActive {
+            color: colors.$PRIMARY;
+            background-color: colors.$GREY_50;
+
+            svg {
+              fill: colors.$PRIMARY;
+            }
+          }
+        }
+      }
+
+      a {
+        @include flexbox.flexbox(start, center);
+        gap: 12px;
+        height: 60px;
+        padding: 20px;
+        font-weight: 700;
+        color: colors.$GREY_800;
+        border-radius: 10px;
+        transition: 200ms;
+
+        svg {
+          fill: colors.$GREY_800;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    @include flexbox.columnFlexbox(40px);
+    margin-bottom: 40px;
+
+    .guide {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      padding: 20px 30px;
+      background-color: colors.$SECONDARY_01;
+      border-radius: 10px;
+
+      .message {
+        @include flexbox.flexbox(center, start, col, 7px);
+
+        p {
+          @include typography.head16;
+          color: colors.$GREY_800;
+
+          &:last-of-type {
+            @include typography.body12;
+            font-weight: 400;
+            color: colors.$GREY_300;
+          }
+        }
+      }
+    }
+
+    .policy {
+      @include typography.body12;
+      @include flexbox.columnFlexbox(10px);
+      color: colors.$GREY_300;
+
+      a {
+        color: colors.$GREY_300;
+        text-decoration: underline;
+      }
+    }
+  }
+}

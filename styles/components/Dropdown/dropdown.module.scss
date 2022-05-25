@@ -1,0 +1,83 @@
+@use '/styles/constants/colors';
+@use '/styles/mixins/position';
+@use '/styles/mixins/flexbox';
+@use '/styles/mixins/typography';
+
+.dropdown {
+  position: relative;
+  width: 130px;
+
+  button {
+    height: 40px;
+  }
+
+  .display {
+    @include flexbox.flexbox($jc: between, $gap: 20px);
+    @include typography.body14;
+    width: 100%;
+    padding: 0 20px;
+    border: 1px solid colors.$GREY_100;
+    border-radius: 10px;
+  }
+
+  .list {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    background-color: colors.$WHITE;
+    border-radius: 10px;
+    box-shadow: colors.$DROP_DOWN_SHADOW;
+    opacity: 0;
+    transition: 150ms;
+    transform: scaleY(0);
+    transform-origin: top;
+
+    .listItem {
+      width: 100%;
+      padding: 12px 20px;
+      text-align: left;
+
+      &:hover {
+        background-color: colors.$GREY_50;
+      }
+    }
+
+    .createService {
+      @include flexbox.flexbox;
+      height: 40px;
+
+      input {
+        @include typography.body12;
+        flex: 1;
+        height: 100%;
+        padding: 0 10px;
+        border-top: 1px solid colors.$GREY_100;
+      }
+
+      button {
+        @include typography.body12;
+        height: 100%;
+        padding: 0 10px;
+        color: colors.$WHITE;
+        background-color: colors.$PRIMARY;
+      }
+    }
+  }
+
+  .displayActive {
+    border: 1px solid colors.$PRIMARY;
+  }
+
+  .isActive {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.big {
+  width: 100%;
+
+  button {
+    height: 60px;
+  }
+}

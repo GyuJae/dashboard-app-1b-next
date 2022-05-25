@@ -1,0 +1,64 @@
+@use '/styles/constants/colors';
+@use '/styles/mixins/position';
+@use '/styles/mixins/flexbox';
+@use '/styles/mixins/typography';
+@use '/styles/mixins/responsive';
+
+.card {
+  @include flexbox.flexbox(center, flex-start, col, 20px);
+  width: 100%;
+  padding: 20px;
+  cursor: pointer;
+  border: 1px solid colors.$GREY_100;
+  border-radius: 10px;
+  transition: 300ms;
+
+  &:hover {
+    border: 1px solid colors.$PRIMARY;
+  }
+
+  @include responsive.after(SD) {
+    max-width: calc(100% / 2 - 10px);
+  }
+
+  @include responsive.after(SHD) {
+    max-width: calc(100% / 3 - 40px / 3);
+  }
+
+  h2 {
+    @include typography.head16;
+    padding: 20px 0;
+  }
+
+  .dataBox {
+    @include typography.body12;
+
+    & div {
+      display: flex;
+      line-height: 40px;
+      border-bottom: 1px solid colors.$GREY_100;
+
+      &:first-child {
+        border-top: 1px solid colors.$GREY_100;
+      }
+
+      dt {
+        flex: 1;
+        color: colors.$GREY_100;
+      }
+
+      dd {
+        flex: 2;
+      }
+    }
+  }
+
+  button {
+    @include typography.body14;
+    padding: 12px 20px;
+    font-weight: 700;
+    color: colors.$GREY_800;
+    border: 1px solid colors.$GREY_100;
+    border-radius: 10px;
+  }
+}
